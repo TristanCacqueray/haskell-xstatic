@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Zuul Weeder</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/xstatic/remixicon.min.css" rel="stylesheet" />
+    <script src="/xstatic/tailwind.min.js"></script>
+    <script src="/xstatic/htmx.min.js"></script>
+    <script src="/xstatic/Sortable.min.js"></script>
+  </head>
+  <body id="main">
+    <nav class="bg-slate-700 p-1 shadow w-full flex">
+      <div class="flex-grow">
+        <span class="font-semibold text-white"> XStatic demo </span>
+      </div>
+    </nav>
+    <div class="container grid p-4 place-content-center">
+      <input
+        class="form-control"
+        size="42"
+        type="search"
+        name="query"
+        hx-post="/search"
+        hx-trigger="keyup changed delay:500ms, search"
+        hx-target="#search-results"
+        placeholder="Begin Typing To Search..."
+      />
+      <div id="search-results"></div>
+    </div>
+    <div class="container p-4">
+      <form class="sortable" hx-post="/sort" hx-trigger="end">
+        <div class="htmx-indicator">Updating...</div>
+        <div><input type="hidden" name="item" value="1" />Item 1</div>
+        <div><input type="hidden" name="item" value="2" />Item 2</div>
+        <div><input type="hidden" name="item" value="3" />Item 3</div>
+        <div><input type="hidden" name="item" value="4" />Item 4</div>
+        <div><input type="hidden" name="item" value="5" />Item 5</div>
+      </form>
+      <script>
+        htmx.onLoad(function (content) {
+          var sortables = content.querySelectorAll(".sortable");
+          for (var i = 0; i < sortables.length; i++) {
+            var sortable = sortables[i];
+            new Sortable(sortable, {
+              animation: 150,
+              ghostClass: "blue-background-class",
+            });
+          }
+        });
+      </script>
+    </div>
+  </body>
+</html>

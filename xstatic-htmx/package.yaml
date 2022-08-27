@@ -1,0 +1,25 @@
+name: xstatic-htmx
+version: 1.8.0.0
+synopsis: high power tools for HTML
+description: high power tools for HTML.
+author: Tristan Cacqueray
+maintainer: tdecacqu@redhat.com
+github: TristanCacqueray/haskell-xstatic
+category: JavaScript
+extra-source-files:
+  - CHANGELOG.md
+
+ghc-options:
+  - -Weverything
+  - -Wno-implicit-prelude
+  - -Wno-missing-import-lists
+  # how to make template haskell file-embed be safe?
+  - -Wno-missing-safe-haskell-mode -Wno-unsafe
+
+dependencies:
+  - base <5
+  - bytestring
+  - xstatic
+
+library:
+  source-dirs: src/

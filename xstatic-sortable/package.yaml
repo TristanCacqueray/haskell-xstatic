@@ -1,0 +1,24 @@
+name: xstatic-sortable
+version: 1.15.0.0
+synopsis: JavaScript library for reorderable drag-and-drop lists
+description: JavaScript library for reorderable drag-and-drop lists.
+author: Tristan Cacqueray
+maintainer: tdecacqu@redhat.com
+github: TristanCacqueray/haskell-xstatic
+category: JavaScript
+extra-source-files:
+  - CHANGELOG.md
+
+ghc-options:
+  - -Weverything
+  - -Wno-implicit-prelude
+  - -Wno-missing-import-lists
+  # how to make template haskell file-embed be safe?
+  - -Wno-missing-safe-haskell-mode -Wno-unsafe
+
+dependencies:
+  - base <5
+  - xstatic
+
+library:
+  source-dirs: src/

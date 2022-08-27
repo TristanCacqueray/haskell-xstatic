@@ -1,0 +1,29 @@
+name: xstatic
+version: 0.1.0
+synopsis: Low-Fat static file packaging for Haskell projects
+description: Low-Fat static file packaging for Haskell projects.
+author: Tristan Cacqueray
+maintainer: tdecacqu@redhat.com
+github: TristanCacqueray/haskell-xstatic
+category: JavaScript
+extra-source-files:
+  - CHANGELOG.md
+
+ghc-options:
+  - -Weverything
+  - -Wno-implicit-prelude
+  - -Wno-missing-kind-signatures
+  # how to make template haskell file-embed be safe?
+  - -Wno-missing-safe-haskell-mode -Wno-unsafe
+
+dependencies:
+  - base <5
+  - binary
+  - bytestring
+  - containers
+  - file-embed
+  - wai
+  - http-types
+
+library:
+  source-dirs: src/
