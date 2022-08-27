@@ -30,7 +30,7 @@ main = do
         "/sort" -> do
             items <- HTTP.parseSimpleQuery <$> Wai.getRequestBodyChunk req
             let respBody =
-                    mconcat $
+                    mconcat
                         ( "<div class=htmx-indicator>Updating...</div>"
                             : map (\(_, v) -> "<div><input type=hidden name=item value=" <> v <> " />Item " <> v <> "</div>") items
                         )

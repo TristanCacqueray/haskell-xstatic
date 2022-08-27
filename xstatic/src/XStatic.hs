@@ -57,14 +57,15 @@ xstaticApp xs = \req resp ->
         ( name xf
         ,
             ( fromByteString $ content xf
-            , ("cache-control", "public, max-age=604800")
-                : ("content-length", pack . show . BS.length $ content xf)
-                : ("content-type", contentType xf)
-                : ("connection", "keep-alive")
-                : ("content-encoding", "gzip")
-                : ("etag", versionToEtag $ contentVersion xf)
-                : ("keep-alive", "timeout=5, max=100")
-                : []
+            ,
+                [ ("cache-control", "public, max-age=604800")
+                , ("content-length", pack . show . BS.length $ content xf)
+                , ("content-type", contentType xf)
+                , ("connection", "keep-alive")
+                , ("content-encoding", "gzip")
+                , ("etag", versionToEtag $ contentVersion xf)
+                , ("keep-alive", "timeout=5, max=100")
+                ]
             )
         )
 
