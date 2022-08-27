@@ -24,5 +24,6 @@ Checkout the [demo](./demo) for an example web application.
 
 ## Notes
 
-- The files are embedded and served compressed, the staticApp sets the `Content-Encoding: gzip` headers.
+- The files are embedded in the code.
+- Compressed files are served as-is by automatically adding the `Content-Encoding: gzip` headers.
 - When adding new packages, keep the original files license. XStatic only adds metadata.

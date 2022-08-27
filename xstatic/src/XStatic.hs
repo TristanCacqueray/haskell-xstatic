@@ -57,17 +57,24 @@ xstaticApp xs = \req resp ->
         ( name xf
         ,
             ( fromByteString $ content xf
-            ,
+            , (addGzipHeader $ content xf)
                 [ ("cache-control", "public, max-age=604800")
                 , ("content-length", pack . show . BS.length $ content xf)
                 , ("content-type", contentType xf)
                 , ("connection", "keep-alive")
-                , ("content-encoding", "gzip")
                 , ("etag", versionToEtag $ contentVersion xf)
                 , ("keep-alive", "timeout=5, max=100")
                 ]
             )
         )
+
+addGzipHeader :: ByteString -> ResponseHeaders -> ResponseHeaders
+addGzipHeader fileContent
+    | isGzip fileContent = (("content-encoding", "gzip") :)
+    | otherwise = id
+
+isGzip :: ByteString -> Bool
+isGzip = BS.isPrefixOf "\x1f\x8b\x08" -- the gzip magic number for deflate
 
 versionToEtag :: Version -> ByteString
 versionToEtag = BS8.unwords . BS8.split '.' . pack . showVersion
