@@ -1,7 +1,14 @@
 {-# LANGUAGE ImportQualifiedPost #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module XStatic (xstaticApp, XStaticFile (..), embedFile) where
+module XStatic (
+    -- * xstatic api
+    XStaticFile (..),
+    xstaticApp,
+
+    -- * file-embed re-export
+    embedFile,
+) where
 
 import Data.Binary.Builder (Builder, fromByteString)
 import Data.ByteString (ByteString)
@@ -15,23 +22,31 @@ import Network.HTTP.Types.Header (ResponseHeaders)
 import Network.HTTP.Types.Status qualified as HTTP
 import Network.Wai qualified
 
+-- | A static file definition
 data XStaticFile = XStaticFile
     { name :: ByteString
+    -- ^ The expected request filename. The name must not have any slash '/'.
     , content :: ByteString
+    -- ^ The file content gzip compressed.
     , contentVersion :: Version
+    -- ^ The file version for the etag header.
     , contentType :: ByteString
+    -- ^ The content type, e.g. `text/javascript` or `text/css`.
     }
 
+{- | Create a wai application to serve 'XStaticFile'.
+
+ The request are served whenever the basename match, ignoring the parent directory or the query string.
+-}
 xstaticApp :: [XStaticFile] -> Network.Wai.Application
 xstaticApp xs = \req resp ->
-    let (_, fn) = breakEnd (== '/') (Network.Wai.rawPathInfo req)
-     in
-      resp $ case Map.lookup fn files of
+    let (_, basename) = breakEnd (== '/') (Network.Wai.rawPathInfo req)
+     in resp $ case Map.lookup basename files of
             Just (builder, headers) ->
-              let body = case Network.Wai.requestMethod req of
-                    "HEAD" -> mempty
-                    _ -> builder
-               in Network.Wai.responseBuilder HTTP.status200 headers body
+                let body = case Network.Wai.requestMethod req of
+                        "HEAD" -> mempty
+                        _ -> builder
+                 in Network.Wai.responseBuilder HTTP.status200 headers body
             Nothing -> Network.Wai.responseLBS HTTP.status404 mempty mempty
   where
     files :: Map.Map ByteString (Builder, ResponseHeaders)
