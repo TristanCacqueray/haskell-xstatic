@@ -6,7 +6,7 @@ cabal-version: 1.12
 
 name:           xstatic-sweetalert2
 version:        11.4.29.0
-synopsis:       A beautiful, responsive, highly customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes.
+synopsis:       A beautiful, responsive, highly customizable JavaScript's popup boxes.
 description:    A beautiful, responsive, highly customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes. Zero dependencies.
                 .
                 https://sweetalert2.github.io/

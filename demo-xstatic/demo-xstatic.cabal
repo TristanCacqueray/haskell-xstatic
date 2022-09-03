@@ -3,7 +3,7 @@ version:       0
 name:          demo-xstatic
 author:        Tristan Cacqueray
 maintainer:    tdecacqu@redhat.com
-license:       BSD3
+license:       BSD-3-Clause
 license-file:  LICENSE
 
 executable demo-xstatic
