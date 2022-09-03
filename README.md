@@ -1,5 +1,8 @@
 # XStatic package for Haskell
 
+[![Hackage](https://img.shields.io/hackage/v/xstatic.svg?logo=haskell)](https://hackage.haskell.org/package/xstatic)
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](./xstatic/LICENSE)
+
 Similar to [xstatic-py](https://github.com/xstatic-py/xstatic),
 the goal of XStatic family of packages is to provide static file
 as Haskell library to be installed using cabal.
