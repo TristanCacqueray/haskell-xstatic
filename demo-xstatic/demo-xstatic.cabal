@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 
-name:           xstatic-demo
+name:           demo-xstatic
 version:        0.1.0.0
 category:       JavaScript
 homepage:       https://github.com/TristanCacqueray/haskell-xstatic#readme
@@ -17,10 +17,10 @@ source-repository head
   type: git
   location: https://github.com/TristanCacqueray/haskell-xstatic
 
-executable xstatic-demo
+executable demo-xstatic
   main-is: Demo.hs
   other-modules:
-      Paths_xstatic_demo
+      Paths_demo_xstatic
   hs-source-dirs:
       ./
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-missing-safe-haskell-mode -Wno-unsafe
