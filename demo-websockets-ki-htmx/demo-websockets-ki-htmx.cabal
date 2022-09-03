@@ -1,0 +1,34 @@
+cabal-version: 3.0
+version:       0
+name:          demo-websockets-ki-htmx
+
+executable demo-websockets-ki-htmx
+  main-is: Server.hs
+  hs-source-dirs: ./
+  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-missing-safe-haskell-mode -Wno-unsafe -Wno-missing-kind-signatures -Wno-monomorphism-restriction -Wno-missing-local-signatures
+  build-depends:
+      base
+    , lens
+    , lens-aeson
+    , bytestring
+    , http-types
+    , network
+    , wai
+    , warp
+    , xstatic
+    , xstatic-htmx
+    , xstatic-remixicon
+    , xstatic-sortable
+    , xstatic-tailwind
+    , websockets
+    , relude
+    , ki
+    , servant
+    , servant-lucid
+    , servant-server
+    , servant-websockets
+    , wai
+    , warp
+    , lucid
+    , lucid-htmx
+  default-language: Haskell2010
