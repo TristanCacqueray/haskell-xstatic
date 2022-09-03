@@ -1,28 +1,14 @@
-cabal-version: 1.12
-
--- This file has been generated from package.yaml by hpack version 0.35.0.
---
--- see: https://github.com/sol/hpack
-
-name:           demo-xstatic
-version:        0.1.0.0
-category:       JavaScript
-homepage:       https://github.com/TristanCacqueray/haskell-xstatic#readme
-bug-reports:    https://github.com/TristanCacqueray/haskell-xstatic/issues
-author:         Tristan Cacqueray
-maintainer:     tdecacqu@redhat.com
-build-type:     Simple
-
-source-repository head
-  type: git
-  location: https://github.com/TristanCacqueray/haskell-xstatic
+cabal-version: 3.0
+version:       0
+name:          demo-xstatic
+author:        Tristan Cacqueray
+maintainer:    tdecacqu@redhat.com
+license:       BSD3
+license-file:  LICENSE
 
 executable demo-xstatic
   main-is: Demo.hs
-  other-modules:
-      Paths_demo_xstatic
-  hs-source-dirs:
-      ./
+  hs-source-dirs: ./
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-missing-safe-haskell-mode -Wno-unsafe
   build-depends:
       base

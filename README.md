@@ -20,7 +20,7 @@ staticApp = XStatic.xstaticApp [XStatic.htmx]
 
 - Serve this application to provide the static files content.
 
-Checkout the [demo](./demo) for an example web application.
+Checkout the [demo](./demo-xstatic) or [websockets-ki-htmx](./demo-websockets-ki-htmx) for examples.
 
 ## Notes
 

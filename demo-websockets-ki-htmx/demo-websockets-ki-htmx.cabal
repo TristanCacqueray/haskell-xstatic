@@ -1,6 +1,10 @@
 cabal-version: 3.0
 version:       0
 name:          demo-websockets-ki-htmx
+author:        Tristan Cacqueray
+maintainer:    tdecacqu@redhat.com
+license:       BSD3
+license-file:  LICENSE
 
 executable demo-websockets-ki-htmx
   main-is: Server.hs
