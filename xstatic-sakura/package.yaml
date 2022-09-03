@@ -9,6 +9,7 @@ category: JavaScript
 license-file: LICENSE.txt
 extra-source-files:
   - CHANGELOG.md
+  - data/*.gz
 
 ghc-options:
   - -Weverything

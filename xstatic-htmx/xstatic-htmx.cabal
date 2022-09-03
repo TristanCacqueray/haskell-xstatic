@@ -18,6 +18,11 @@ license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     CHANGELOG.md
+    data/ext-debug.js.gz
+    data/ext-json-enc.js.gz
+    data/ext-sse.js.gz
+    data/ext-ws.js.gz
+    data/htmx.min.js.gz
 
 source-repository head
   type: git

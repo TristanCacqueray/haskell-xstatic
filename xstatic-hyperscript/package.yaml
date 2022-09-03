@@ -11,6 +11,7 @@ github: TristanCacqueray/haskell-xstatic
 category: JavaScript
 extra-source-files:
   - CHANGELOG.md
+  - data/*.gz
 
 ghc-options:
   - -Weverything

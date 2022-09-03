@@ -18,6 +18,9 @@ license-file:   LICENSE.txt
 build-type:     Simple
 extra-source-files:
     CHANGELOG.md
+    data/normalize.css.gz
+    data/sakura-dark-solarized.css.gz
+    data/sakura.css.gz
 
 source-repository head
   type: git

@@ -18,6 +18,8 @@ license-file:   License
 build-type:     Simple
 extra-source-files:
     CHANGELOG.md
+    data/remixicon.min.css.gz
+    data/remixicon.woff2.gz
 
 source-repository head
   type: git

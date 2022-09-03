@@ -20,6 +20,7 @@ license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     CHANGELOG.md
+    data/sweetalert2.all.min.js.gz
 
 source-repository head
   type: git

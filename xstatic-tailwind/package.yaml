@@ -4,14 +4,18 @@ synopsis: Tailwind CSS library
 description: |
   Tailwind CSS library.
 
-  Generated using `curl -L "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp" | gzip -9`
-  On 2022-08-26
+  This package contains the full stylesheet, generated using @curl -L "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp" | gzip -9@ on 2022-08-26.
+
+  This is useful for quick prototyping where all the utility classes are available by default.
+  When satisfied, generate a custom stylesheet using the CLI.
+  Checkout https://github.com/srid/tailwind-haskell .
 author: Tristan Cacqueray
 maintainer: tdecacqu@redhat.com
 github: TristanCacqueray/haskell-xstatic
 category: JavaScript
 extra-source-files:
   - CHANGELOG.md
+  - data/*.gz
 
 ghc-options:
   - -Weverything
