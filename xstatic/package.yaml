@@ -1,5 +1,5 @@
 name: xstatic
-version: 0.1.0
+version: 0.2.0
 synopsis: Low-Fat static file packaging for Haskell projects
 description: Low-Fat static file packaging for Haskell projects.
 author: Tristan Cacqueray

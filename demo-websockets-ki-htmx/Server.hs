@@ -13,9 +13,7 @@
 
 module Main (main) where
 
-import Network.HTTP.Types.Status qualified as HTTP
 import Network.Socket (SockAddr)
-import Network.Wai qualified as Wai
 import Network.Wai.Handler.Warp qualified as Warp
 
 import Servant
@@ -234,22 +232,10 @@ main = do
     state <- atomically newState
 
     Ki.scoped $ \scope ->
-        webService
-            8080
-            [XStatic.htmx, XStatic.htmxExtWS, XStatic.tailwind, XStatic.remixiconCss, XStatic.remixiconWoff2]
-            (Servant.serve (Proxy @ServerAPI) (application scope state))
-
-webService :: Warp.Port -> [XStatic.XStaticFile] -> Wai.Application -> IO ()
-webService port xs app = Warp.run port handler
-  where
-    staticApp = XStatic.xstaticApp xs
-    handler req resp =
-        app
-            req
-            ( \appResp -> case HTTP.statusCode (Wai.responseStatus appResp) of
-                404 -> staticApp req resp
-                _ -> resp appResp
-            )
+        Warp.run 8080 $
+            XStatic.xstaticMiddleware
+                [XStatic.htmx, XStatic.htmxExtWS, XStatic.tailwind, XStatic.remixiconCss, XStatic.remixiconWoff2]
+                (Servant.serve (Proxy @ServerAPI) (application scope state))
 
 wsSend :: Attribute
 wsSend = makeAttribute "ws-send" ""

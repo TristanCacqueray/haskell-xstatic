@@ -5,6 +5,7 @@ module XStatic (
     -- * xstatic api
     XStaticFile (..),
     xstaticApp,
+    xstaticMiddleware,
 
     -- * file-embed re-export
     embedFile,
@@ -67,6 +68,15 @@ xstaticApp xs = \req resp ->
                 ]
             )
         )
+
+-- | Serve 'XStaticFile' when the application returns a 404
+xstaticMiddleware :: [XStaticFile] -> Network.Wai.Middleware
+xstaticMiddleware xs app req resp = app req handleAppResp
+  where
+    staticApp = xstaticApp xs
+    handleAppResp appResp = case HTTP.statusCode (Network.Wai.responseStatus appResp) of
+        404 -> staticApp req resp
+        _ -> resp appResp
 
 addGzipHeader :: ByteString -> ResponseHeaders -> ResponseHeaders
 addGzipHeader fileContent

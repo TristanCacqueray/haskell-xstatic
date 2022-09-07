@@ -15,14 +15,12 @@ executable demo-websockets-ki-htmx
     , lens
     , lens-aeson
     , bytestring
-    , http-types
     , network
     , wai
     , warp
     , xstatic
     , xstatic-htmx
     , xstatic-remixicon
-    , xstatic-sortable
     , xstatic-tailwind
     , websockets
     , relude
@@ -31,7 +29,6 @@ executable demo-websockets-ki-htmx
     , servant-lucid
     , servant-server
     , servant-websockets
-    , wai
     , warp
     , lucid
     , lucid-htmx
