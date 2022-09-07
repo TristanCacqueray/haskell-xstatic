@@ -17,6 +17,10 @@
           xstatic-remixicon = mk "xstatic-remixicon";
           xstatic-sortable = mk "xstatic-sortable";
           xstatic-tailwind = mk "xstatic-tailwind";
+          xstatic-xterm = mk "xstatic-xterm";
+          xstatic-th = mk "xstatic-th";
+          lucid-xstatic = mk "lucid-xstatic";
+          servant-xstatic = mk "servant-xstatic";
 
           # Bump dependencies to the latest version
           ki = hpPrev.ki_1_0_0;
@@ -24,6 +28,7 @@
 
           demo-xstatic = mk "demo-xstatic";
           demo-websockets-ki-htmx = mk "demo-websockets-ki-htmx";
+          demo-xterm = mk "demo-xterm";
         };
       hspkgs = pkgs.haskell.packages.ghc924.override ({
         overrides = haskellOverrides;
@@ -34,8 +39,9 @@
       packages.x86_64-linux.demo-websockets-ki-htmx =
         mk-exe hspkgs.demo-websockets-ki-htmx;
       packages.x86_64-linux.demo = mk-exe hspkgs.demo-xstatic;
+      packages.x86_64-linux.xterm = mk-exe hspkgs.demo-xterm;
       devShells.x86_64-linux.default = hspkgs.shellFor {
-        packages = p: [ p.demo-xstatic p.demo-websockets-ki-htmx ];
+        packages = p: [ p.demo-xstatic p.demo-websockets-ki-htmx p.demo-xterm ];
         buildInputs = with pkgs; [
           hpack
           ghcid
