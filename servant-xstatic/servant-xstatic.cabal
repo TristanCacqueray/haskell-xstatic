@@ -23,7 +23,7 @@ source-repository head
 
 library
   exposed-modules:
-      XStatic.Servant
+      Servant.XStatic
   other-modules:
       Paths_servant_xstatic
   hs-source-dirs:

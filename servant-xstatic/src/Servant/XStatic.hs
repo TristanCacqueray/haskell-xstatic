@@ -1,11 +1,11 @@
 {-# LANGUAGE ImportQualifiedPost #-}
 
-module XStatic.Servant (xstaticApp) where
+module Servant.XStatic (xstaticServant) where
 
 import Servant.API (Raw)
 import Servant.Server (ServerT, Tagged (..))
 import XStatic (XStaticFile)
 import XStatic qualified
 
-xstaticApp :: [XStaticFile] -> ServerT Raw m
-xstaticApp = Tagged . XStatic.xstaticApp
+xstaticServant :: [XStaticFile] -> ServerT Raw m
+xstaticServant = Tagged . XStatic.xstaticApp
