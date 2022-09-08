@@ -21,7 +21,6 @@ dependencies:
   - binary
   - bytestring
   - containers
-  - file-embed
   - wai
   - http-types
 

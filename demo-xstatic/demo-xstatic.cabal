@@ -13,6 +13,7 @@ executable demo-xstatic
   build-depends:
       base
     , bytestring
+    , file-embed
     , http-types
     , wai
     , warp

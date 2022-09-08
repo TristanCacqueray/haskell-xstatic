@@ -6,10 +6,9 @@
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE TemplateHaskell #-}
 
-module XStatic.TH (embedXStaticFile) where
+module XStatic.TH (embedXStaticFile, XStaticFile) where
 
 import Codec.Compression.GZip qualified as GZip
-import Data.ByteString (ByteString)
 import Data.ByteString qualified as BS
 import Data.ByteString.Char8 (pack)
 import Data.Maybe (fromMaybe)

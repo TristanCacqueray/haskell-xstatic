@@ -19,8 +19,7 @@ ghc-options:
 
 dependencies:
   - base <5
-  - bytestring
-  - xstatic
+  - xstatic-th
 
 library:
   source-dirs: src/

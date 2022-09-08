@@ -3,22 +3,12 @@
 
 module XStatic.Htmx (htmx, htmxExtWS, htmxExtSSE, htmxExtDebug, htmxExtJsonEnc) where
 
-import Data.ByteString (ByteString)
 import Paths_xstatic_htmx (version)
-import XStatic (XStaticFile (..), embedFile)
-
-mkStaticFile :: ByteString -> ByteString -> XStaticFile
-mkStaticFile n c =
-    XStaticFile
-        { name = n
-        , content = c
-        , contentType = "text/javascript; charset=UTF-8"
-        , contentVersion = version
-        }
+import XStatic.TH (XStaticFile, embedXStaticFile)
 
 htmx, htmxExtWS, htmxExtSSE, htmxExtDebug, htmxExtJsonEnc :: XStaticFile
-htmx = mkStaticFile "htmx.min.js" $(embedFile "data/htmx.min.js.gz")
-htmxExtWS = mkStaticFile "ext-ws.js" $(embedFile "data/ext-ws.js.gz")
-htmxExtSSE = mkStaticFile "ext-sse.js" $(embedFile "data/ext-sse.js.gz")
-htmxExtDebug = mkStaticFile "ext-debug.js" $(embedFile "data/ext-debug.js.gz")
-htmxExtJsonEnc = mkStaticFile "ext-json-enc.js" $(embedFile "data/ext-json-enc.js.gz")
+htmx = $(embedXStaticFile "data/htmx.min.js.gz" version)
+htmxExtWS = $(embedXStaticFile "data/ext-ws.js.gz" version)
+htmxExtSSE = $(embedXStaticFile "data/ext-sse.js.gz" version)
+htmxExtDebug = $(embedXStaticFile "data/ext-debug.js.gz" version)
+htmxExtJsonEnc = $(embedXStaticFile "data/ext-json-enc.js.gz" version)

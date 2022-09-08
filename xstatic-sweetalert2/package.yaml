@@ -22,7 +22,7 @@ ghc-options:
 
 dependencies:
   - base <5
-  - xstatic
+  - xstatic-th
 
 library:
   source-dirs: src/

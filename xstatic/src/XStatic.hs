@@ -7,9 +7,6 @@ module XStatic (
     XStaticFile (..),
     xstaticApp,
     xstaticMiddleware,
-
-    -- * file-embed re-export
-    embedFile,
 ) where
 
 import Data.Binary.Builder (Builder, fromByteString)
@@ -17,7 +14,6 @@ import Data.ByteString (ByteString)
 import Data.ByteString qualified as BS
 import Data.ByteString.Char8 (breakEnd, pack)
 import Data.ByteString.Char8 qualified as BS8
-import Data.FileEmbed (embedFile)
 import Data.Map.Strict qualified as Map
 import Data.Version (Version, showVersion)
 import Network.HTTP.Types.Header (ResponseHeaders)

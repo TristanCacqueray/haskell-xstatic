@@ -38,6 +38,5 @@ library
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-missing-safe-haskell-mode -Wno-unsafe
   build-depends:
       base <5
-    , bytestring
-    , xstatic
+    , xstatic-th
   default-language: Haskell2010

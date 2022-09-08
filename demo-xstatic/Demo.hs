@@ -14,12 +14,13 @@ import XStatic.Htmx qualified as XStatic
 import XStatic.Remixicon qualified as XStatic
 import XStatic.Sortable qualified as XStatic
 import XStatic.Tailwind qualified as XStatic
+import Data.FileEmbed (embedFile)
 
 staticApp :: Wai.Application
 staticApp = XStatic.xstaticApp $ XStatic.htmx : XStatic.tailwind : XStatic.sortable : XStatic.remixicon
 
 body :: ByteString
-body = fromStrict $(XStatic.embedFile "Demo.html")
+body = fromStrict $(embedFile "Demo.html")
 
 main :: IO ()
 main = do
