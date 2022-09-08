@@ -4,7 +4,7 @@
 module XStatic.Sortable (sortable) where
 
 import Paths_xstatic_sortable (version)
-import XStatic.TH (XStaticFile, embedXStaticFile)
+import XStatic.TH (XStaticFile, embedXStaticFileVersion)
 
 sortable :: XStaticFile
-sortable = $(embedXStaticFile "data/Sortable.min.js.gz" version)
+sortable = $(embedXStaticFileVersion "data/Sortable.min.js.gz" version)

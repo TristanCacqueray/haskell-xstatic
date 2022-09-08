@@ -4,11 +4,11 @@
 module XStatic.Htmx (htmx, htmxExtWS, htmxExtSSE, htmxExtDebug, htmxExtJsonEnc) where
 
 import Paths_xstatic_htmx (version)
-import XStatic.TH (XStaticFile, embedXStaticFile)
+import XStatic.TH (XStaticFile, embedXStaticFileVersion)
 
 htmx, htmxExtWS, htmxExtSSE, htmxExtDebug, htmxExtJsonEnc :: XStaticFile
-htmx = $(embedXStaticFile "data/htmx.min.js.gz" version)
-htmxExtWS = $(embedXStaticFile "data/ext-ws.js.gz" version)
-htmxExtSSE = $(embedXStaticFile "data/ext-sse.js.gz" version)
-htmxExtDebug = $(embedXStaticFile "data/ext-debug.js.gz" version)
-htmxExtJsonEnc = $(embedXStaticFile "data/ext-json-enc.js.gz" version)
+htmx = $(embedXStaticFileVersion "data/htmx.min.js.gz" version)
+htmxExtWS = $(embedXStaticFileVersion "data/ext-ws.js.gz" version)
+htmxExtSSE = $(embedXStaticFileVersion "data/ext-sse.js.gz" version)
+htmxExtDebug = $(embedXStaticFileVersion "data/ext-debug.js.gz" version)
+htmxExtJsonEnc = $(embedXStaticFileVersion "data/ext-json-enc.js.gz" version)

@@ -4,8 +4,8 @@
 module XStatic.Hyperscript (hyperscript, hyperscriptSSE) where
 
 import Paths_xstatic_hyperscript (version)
-import XStatic.TH (XStaticFile, embedXStaticFile)
+import XStatic.TH (XStaticFile, embedXStaticFileVersion)
 
 hyperscript, hyperscriptSSE :: XStaticFile
-hyperscript = $(embedXStaticFile "data/hyperscript.min.js.gz" version)
-hyperscriptSSE = $(embedXStaticFile "data/eventsource.js.gz" version)
+hyperscript = $(embedXStaticFileVersion "data/hyperscript.min.js.gz" version)
+hyperscriptSSE = $(embedXStaticFileVersion "data/eventsource.js.gz" version)

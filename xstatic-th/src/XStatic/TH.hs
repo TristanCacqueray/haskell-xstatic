@@ -6,50 +6,87 @@
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE TemplateHaskell #-}
 
-module XStatic.TH (embedXStaticFile, XStaticFile) where
+{- | Create a 'XStaticFile' served as /\/my-file.txt/ or /\/xstatic\/my-file.txt/:
+
+@
+myFile :: XStaticFile
+myFile = $(embedXStaticFile ".\/data\/my-file.txt")
+@
+-}
+module XStatic.TH (
+    embedXStaticFile,
+    embedXStaticFileVersion,
+
+    -- * re-export from "XStatic"
+    XStaticFile,
+) where
 
 import Codec.Compression.GZip qualified as GZip
+import Data.ByteString (ByteString)
 import Data.ByteString qualified as BS
 import Data.ByteString.Char8 (pack)
+import Data.ByteString.Char8 qualified as BS8
+import Data.Digest.Pure.SHA qualified as SHA
+import Data.List qualified
 import Data.Maybe (fromMaybe)
 import Data.Text qualified as Text
-import Data.Version
+import Data.Version (Version (..), showVersion)
 import Language.Haskell.TH (Exp (AppE))
 import Language.Haskell.TH qualified as TH
 import Language.Haskell.TH.Syntax qualified as TH
 import Network.Mime qualified as Mime
-import XStatic (XStaticFile (..))
+import XStatic (XStaticFile (..), isGzip)
 
--- | Embed a file as a XStaticFile by ensuring compression and discovering the MimeType using the extension.
-embedXStaticFile ::
-    -- | The base name strips '.gz' suffix, and ('.', '/' and "data/") prefix.
+doEmbedXStaticFile ::
     FilePath ->
-    -- | The package version for the ETag
-    Version ->
+    Maybe ByteString ->
     TH.Q TH.Exp
-embedXStaticFile fp version = do
+doEmbedXStaticFile fp etag = do
     buf <- TH.runIO (BS.readFile fp)
     contentE <- TH.lift (ensureCompress buf)
     nameE <- TH.lift clean_name
-    mimeE <- TH.lift (Mime.defaultMimeLookup (stripSuffixT ".gz" $ Text.pack fp))
-
-    mkVersion <- [|Version|]
-    versionNum <- TH.lift (versionBranch version)
-    versionTag <- TH.lift ([] :: [String])
-    let v = mkVersion `AppE` versionNum `AppE` versionTag
+    mimeE <- TH.lift (Mime.defaultMimeLookup (Text.pack fp_without_gz))
+    etagE <- TH.lift (fromMaybe (hashBuf buf) etag)
 
     mkXF <- [|XStaticFile|]
     pure $!
         mkXF
             `AppE` nameE
             `AppE` contentE
-            `AppE` v
+            `AppE` etagE
             `AppE` mimeE
   where
+    hashBuf = pack . SHA.showDigest . SHA.sha1 . BS.fromStrict
     ensureCompress buf
-        | BS.isPrefixOf "\x1f\x8b\x08" buf = buf
+        | isGzip buf = buf
         | otherwise = BS.toStrict (GZip.compress (BS.fromStrict buf))
-    clean_name = stripSuffix ".gz" $ stripPrefix "data/" $ pack $ dropWhile (\c -> c == '.' || c == '/') fp
-    stripSuffixT s n = fromMaybe n (Text.stripSuffix s n)
-    stripSuffix s n = fromMaybe n (BS.stripSuffix s n)
-    stripPrefix p n = fromMaybe n (BS.stripPrefix p n)
+
+    fp_without_gz = stripSuffix ".gz" fp
+    clean_name =
+        pack
+            . mappend "/"
+            . stripSuffix "index.html"
+            . stripPrefix "data/"
+            . dropWhile (\c -> c == '.' || c == '/')
+            $ fp_without_gz
+    stripSuffix :: String -> String -> String
+    stripSuffix s n = reverse $ stripPrefix (reverse s) (reverse n)
+    stripPrefix :: String -> String -> String
+    stripPrefix p n = fromMaybe n (Data.List.stripPrefix p n)
+
+{- | Embed a static file in its compressed form.
+
+The following rules are applied to convert a local filepath to the expected request path:
+
+  * /./, /\// and \"/data\//\" prefix are removed
+  * \"/.gz/\" and \"/index.html/\" suffix are removed
+-}
+embedXStaticFile :: FilePath -> TH.Q TH.Exp
+embedXStaticFile fp = doEmbedXStaticFile fp Nothing
+
+-- | Same as 'embedXStaticFile', but using the provided 'Version' for the 'xfETag' value.
+embedXStaticFileVersion :: FilePath -> Version -> TH.Q TH.Exp
+embedXStaticFileVersion fp version = doEmbedXStaticFile fp (Just $ versionToEtag version)
+
+versionToEtag :: Version -> ByteString
+versionToEtag = mconcat . BS8.split '.' . pack . showVersion

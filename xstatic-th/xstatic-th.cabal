@@ -18,6 +18,7 @@ license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     CHANGELOG.md
+    data/test.js
 
 source-repository head
   type: git
@@ -32,8 +33,9 @@ library
       src/
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-kind-signatures -Wno-missing-import-lists -Wno-missing-safe-haskell-mode -Wno-unsafe
   build-depends:
-      base <5
-    , bytestring
+      SHA
+    , base <5
+    , bytestring >=0.11.2
     , mime-types
     , template-haskell
     , text
@@ -52,9 +54,8 @@ test-suite spec
   build-depends:
       base <5
     , bytestring
-    , mime-types
-    , template-haskell
-    , text
+    , tasty
+    , tasty-hunit
     , xstatic
     , xstatic-th
     , zlib

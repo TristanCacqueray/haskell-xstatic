@@ -117,8 +117,8 @@ indexHtml = do
             -- Change the reconnect delay to a constant value
             script_ "htmx.config.wsReconnectDelay = (retryCount) => 1000;"
   where
-    xJs = traverse_ (\xf -> with (script_ mempty) [src_ $ "/static/" <> decodeUtf8 xf.name])
-    xCss = traverse_ (\xf -> link_ [href_ $ "/static/" <> decodeUtf8 xf.name, rel_ "stylesheet"])
+    xJs = traverse_ (\xf -> with (script_ mempty) [src_ $ "/xstatic" <> decodeUtf8 xf.xfPath])
+    xCss = traverse_ (\xf -> link_ [href_ $ "/xstatic" <> decodeUtf8 xf.xfPath, rel_ "stylesheet"])
 
 bodyHtml :: Html () -> Html () -> Html ()
 bodyHtml content' chat =

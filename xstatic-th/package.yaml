@@ -8,6 +8,7 @@ github: TristanCacqueray/haskell-xstatic
 category: JavaScript
 extra-source-files:
   - CHANGELOG.md
+  - data/test.js
 
 ghc-options:
   - -Weverything
@@ -20,15 +21,17 @@ ghc-options:
 
 dependencies:
   - base <5
-  - bytestring
-  - text
-  - template-haskell
-  - mime-types
-  - xstatic
-  - zlib
 
 library:
   source-dirs: src/
+  dependencies:
+    - bytestring >= 0.11.2
+    - text
+    - template-haskell
+    - mime-types
+    - SHA
+    - xstatic
+    - zlib
 
 tests:
   spec:
@@ -37,3 +40,7 @@ tests:
     dependencies:
       - xstatic
       - xstatic-th
+      - tasty
+      - tasty-hunit
+      - zlib
+      - bytestring

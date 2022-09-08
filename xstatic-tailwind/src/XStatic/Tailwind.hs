@@ -4,7 +4,7 @@
 module XStatic.Tailwind (tailwind) where
 
 import Paths_xstatic_tailwind (version)
-import XStatic.TH (XStaticFile, embedXStaticFile)
+import XStatic.TH (XStaticFile, embedXStaticFileVersion)
 
 tailwind :: XStaticFile
-tailwind = $(embedXStaticFile "data/tailwind.min.js.gz" version)
+tailwind = $(embedXStaticFileVersion "data/tailwind.min.js.gz" version)
