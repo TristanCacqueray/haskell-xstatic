@@ -1,0 +1,23 @@
+name: lucid-xstatic
+version: 0.1.0
+author: Tristan Cacqueray
+maintainer: tdecacqu@redhat.com
+github: TristanCacqueray/haskell-xstatic
+category: JavaScript
+extra-source-files:
+  - CHANGELOG.md
+
+ghc-options:
+  - -Weverything
+  - -Wno-implicit-prelude
+  - -Wno-missing-import-lists
+  - -Wno-missing-safe-haskell-mode -Wno-unsafe
+
+dependencies:
+  - base <5
+  - lucid
+  - xstatic
+  - text
+
+library:
+  source-dirs: src/
