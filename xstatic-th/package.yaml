@@ -1,0 +1,39 @@
+name: xstatic-th
+version: 0.1.0
+synopsis: Automatic generation of XStaticFile
+description: Automatic generation of XStaticFile.
+author: Tristan Cacqueray
+maintainer: tdecacqu@redhat.com
+github: TristanCacqueray/haskell-xstatic
+category: JavaScript
+extra-source-files:
+  - CHANGELOG.md
+
+ghc-options:
+  - -Weverything
+  - -Wno-implicit-prelude
+  - -Wno-missing-kind-signatures
+  - -Wno-missing-import-lists
+  # how to make template haskell file-embed be safe?
+  - -Wno-missing-safe-haskell-mode -Wno-unsafe
+  #- -ddump-stg-final -ddump-to-file -O2
+
+dependencies:
+  - base <5
+  - bytestring
+  - text
+  - template-haskell
+  - mime-types
+  - xstatic
+  - zlib
+
+library:
+  source-dirs: src/
+
+tests:
+  spec:
+    main: Test.hs
+    source-dirs: test
+    dependencies:
+      - xstatic
+      - xstatic-th
