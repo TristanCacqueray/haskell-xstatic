@@ -20,8 +20,8 @@ license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     CHANGELOG.md
-    data/_hyperscript.min.js.gz
     data/eventsource.js.gz
+    data/hyperscript.min.js.gz
 
 source-repository head
   type: git
