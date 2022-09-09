@@ -6,6 +6,8 @@ cabal-version: 1.12
 
 name:           servant-xstatic
 version:        0.1.0
+synopsis:       XStatic adapter for servant
+description:    Use this library to serve XStatic through servant.
 category:       JavaScript
 homepage:       https://github.com/TristanCacqueray/haskell-xstatic#readme
 bug-reports:    https://github.com/TristanCacqueray/haskell-xstatic/issues
