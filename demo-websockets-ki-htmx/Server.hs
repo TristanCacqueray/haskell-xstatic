@@ -122,25 +122,26 @@ indexHtml = do
 
 bodyHtml :: Html () -> Html () -> Html ()
 bodyHtml content' chat =
-    with div_ [id_ "butler-root", class_ "h-full p-5"] do
-        with div_ [class_ "h-96 flex flex-row"] do
-            with div_ [class_ "basis-2/3 flex h-full p-1 border border-black"] do
-                content'
+    with div_ [id_ "butler-root", class_ "h-full"] do
+        with div_ [class_ "p-5"] do
+            with div_ [class_ "h-96 flex flex-row"] do
+                with div_ [class_ "basis-2/3 flex h-full p-1 border border-black"] do
+                    content'
 
-            with div_ [class_ "basis-1/3 p-1 border border-grey inline-block overflow-y-auto"] do
-                with div_ [id_ "butler-chat"] chat
+                with div_ [class_ "basis-1/3 p-1 border border-grey inline-block overflow-y-auto"] do
+                    with div_ [id_ "butler-chat"] chat
 
-        with div_ [class_ "flex flex-row"] do
-            with div_ [class_ "basis-2/3 p-1 text-right"] do
-                with span_ [id_ "butler-status"] do
-                    "<connected>"
-                    -- After connection, we switch the socket url to the reload endpoint,
-                    -- so that the page is reloaded when reconnected
-                    script_ "htmx.find('#butler-ws').setAttribute('ws-connect', '/reconnect')"
-                with span_ [id_ "butler-count"] mempty
-            with div_ [class_ "basis-1/3 w-full"] do
-                with form_ [id_ "chat-form", wsSend] do
-                    with (input_ mempty) [name_ "msg", class_ "w-full border border-grey p-1 mt-2"]
+            with div_ [class_ "flex flex-row"] do
+                with div_ [class_ "basis-2/3 p-1 text-right"] do
+                    with span_ [id_ "butler-status"] do
+                        "<connected>"
+                        -- After connection, we switch the socket url to the reload endpoint,
+                        -- so that the page is reloaded when reconnected
+                        script_ "htmx.find('#butler-ws').setAttribute('ws-connect', '/reconnect')"
+                    with span_ [id_ "butler-count"] mempty
+                with div_ [class_ "basis-1/3 w-full"] do
+                    with form_ [id_ "chat-form", wsSend] do
+                        with (input_ mempty) [name_ "msg", class_ "w-full border border-grey p-1 mt-2"]
 
 userCountHtml :: Int -> Html ()
 userCountHtml x =
@@ -148,10 +149,10 @@ userCountHtml x =
         with span_ [class_ "font-bold"] (toHtml (show @Text x))
         with i_ [class_ "ri-user-line align-bottom pt-2"] mempty
 
-messageHtml :: Client -> Text -> Html ()
+messageHtml :: Text -> Text -> Html ()
 messageHtml client msg =
     pre_ do
-        toHtml (client.name)
+        toHtml (client)
         ": "
         toHtml msg
 
@@ -162,6 +163,18 @@ helpHtml = do
         li_ "help: show help"
         li_ "bang: show bang"
         li_ "_: chat"
+
+splashHtml :: Html ()
+splashHtml = do
+    with div_ [id_ "butler-root", hxSwapOob_ "afterbegin"] do
+        with div_ [id_ "butler-splash", class_ "h-screen w-screen absolute bg-gray-100 opacity-75 flex justify-center flex-col"] do
+            with div_ [class_ "flex flex-row justify-center"] do
+                with div_ [class_ "px-4 py-2 rounded bg-gray-500"] userNameForm
+  where
+    userNameForm = do
+        with form_ [id_ "user-form", wsSend] do
+            with div_ [class_ "font-bold color-gray-100"] "What's your name?"
+            with (input_ mempty) [name_ "username", class_ "w-full p-1"]
 
 bangHtml :: Html ()
 bangHtml = with i_ [class_ "font-bold text-8xl ri-star-line"] mempty
@@ -192,6 +205,18 @@ application scope state = pure indexHtml :<|> connectRoute :<|> reconnectRoute
         body <- atomically (bodyHtml <$> getContent state <*> getHistory state)
         sendData client.conn body
 
+        sendData client.conn splashHtml
+        let waitForUsername = do
+                buf <- WS.receiveData @Text client.conn
+                case buf ^? key "username" . _String of
+                    Just username -> pure username
+                    Nothing -> do
+                        putStrLn "Invalid payload"
+                        waitForUsername
+
+        username <- waitForUsername
+        sendData client.conn (with div_ [id_ "butler-splash"] mempty)
+
         -- broadcast the new client count
         updateCounter
 
@@ -200,13 +225,13 @@ application scope state = pure indexHtml :<|> connectRoute :<|> reconnectRoute
             buf <- WS.receiveData @Text client.conn
             -- The "msg" key is defined by the chat form input name
             case buf ^? key "msg" . _String of
-                Just msg -> handleMessage client msg
+                Just msg -> handleMessage username client msg
                 Nothing -> putTextLn $ "unknown payload: " <> buf
 
-    handleMessage client = \case
+    handleMessage username client = \case
         "help" -> updateContent helpHtml
         "bang" -> updateContent bangHtml
-        msg -> updateChat (messageHtml client msg)
+        msg -> updateChat (messageHtml username msg)
 
     updateChat msg = do
         -- Add the message to the server state history
