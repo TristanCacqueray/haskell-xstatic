@@ -1,5 +1,7 @@
 name: lucid-xstatic
 version: 0.1.0
+synopsis: Lucid helper for XStatic
+description: Use this library to add XStaticFile to your Html.
 author: Tristan Cacqueray
 maintainer: tdecacqu@redhat.com
 github: TristanCacqueray/haskell-xstatic

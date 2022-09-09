@@ -6,6 +6,8 @@ cabal-version: 1.12
 
 name:           lucid-xstatic
 version:        0.1.0
+synopsis:       Lucid helper for XStatic
+description:    Use this library to add XStaticFile to your Html.
 category:       JavaScript
 homepage:       https://github.com/TristanCacqueray/haskell-xstatic#readme
 bug-reports:    https://github.com/TristanCacqueray/haskell-xstatic/issues
