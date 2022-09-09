@@ -1,9 +1,9 @@
 # XStatic package for Haskell
 
-[![Hackage](https://img.shields.io/hackage/v/xstatic.svg?logo=haskell)](https://hackage.haskell.org/package/xstatic)
-[![Hackage](https://img.shields.io/hackage/v/xstatic-th.svg?logo=haskell)](https://hackage.haskell.org/package/xstatic-th)
-[![Hackage](https://img.shields.io/hackage/v/servant-xstatic.svg?logo=haskell)](https://hackage.haskell.org/package/servant-xstatic)
-[![Hackage](https://img.shields.io/hackage/v/lucid-xstatic.svg?logo=haskell)](https://hackage.haskell.org/package/lucid-xstatic)
+[![Hackage](https://img.shields.io/hackage/v/xstatic.svg?logo=haskell&label=xstatic)](https://hackage.haskell.org/package/xstatic)
+[![Hackage](https://img.shields.io/hackage/v/xstatic-th.svg?logo=haskell&label=xstatic-th)](https://hackage.haskell.org/package/xstatic-th)
+[![Hackage](https://img.shields.io/hackage/v/servant-xstatic.svg?logo=haskell&label=servant-xstatic)](https://hackage.haskell.org/package/servant-xstatic)
+[![Hackage](https://img.shields.io/hackage/v/lucid-xstatic.svg?logo=haskell&label=lucid-xstatic)](https://hackage.haskell.org/package/lucid-xstatic)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](./xstatic/LICENSE)
 
 Similar to [xstatic-py](https://github.com/xstatic-py/xstatic),
