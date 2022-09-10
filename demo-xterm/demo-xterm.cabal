@@ -18,13 +18,13 @@ executable demo-xterm
     , websockets
     , relude
     , ki
+    , stm
     , servant-lucid
     , servant-server
     , servant-websockets
     , servant-xstatic
     , lucid
     , lucid-xstatic
-    , unagi-chan
     , posix-pty
     , string-interpolate
   default-language: Haskell2010
