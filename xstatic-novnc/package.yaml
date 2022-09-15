@@ -1,0 +1,25 @@
+name: xstatic-novnc
+version: 1.3.0.0
+synopsis:  VNC client web application
+description:  VNC client web application.
+homepage: https://novnc.com
+author: Tristan Cacqueray
+maintainer: tdecacqu@redhat.com
+github: TristanCacqueray/haskell-xstatic
+category: JavaScript
+extra-source-files:
+  - CHANGELOG.md
+  - data/*.gz
+
+ghc-options:
+  - -Weverything
+  - -Wno-implicit-prelude
+  - -Wno-missing-import-lists
+  - -Wno-missing-safe-haskell-mode -Wno-unsafe
+
+dependencies:
+  - base <5
+  - xstatic-th
+
+library:
+  source-dirs: src/

@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "bundle": "esbuild ./node_modules/@novnc/novnc/core/rfb.js --bundle  --sourcemap --outfile=./data/noVNC.js --format=esm --minify && gzip -9 ./data/noVNC.js ./data/noVNC.js.map"
+  },
+  "dependencies": {
+    "@novnc/novnc": "github:novnc/noVNC"
+  }
+}
