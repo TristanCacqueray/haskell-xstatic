@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "bundle": "esbuild ./node_modules/winbox/src/js/winbox.js --bundle --sourcemap --outfile=./data/winbox.js --format=esm --minify && gzip -9 ./data/winbox.js ./data/winbox.js.map && cat node_modules/winbox/dist/css/winbox.min.css | gzip -9 > data/winbox.min.css.gz"
+  },
+  "dependencies": {
+    "winbox": "^0.2.6"
+  }
+}

@@ -1,0 +1,25 @@
+name: xstatic-winbox
+version: 0.2.6.0
+synopsis: WinBox is a modern HTML5 window manager
+description: WinBox is a modern HTML5 window manager.
+homepage: https://nextapps-de.github.io/winbox/
+author: Tristan Cacqueray
+maintainer: tdecacqu@redhat.com
+github: TristanCacqueray/haskell-xstatic
+category: JavaScript
+extra-source-files:
+  - CHANGELOG.md
+  - data/*.gz
+
+ghc-options:
+  - -Weverything
+  - -Wno-implicit-prelude
+  - -Wno-missing-import-lists
+  - -Wno-missing-safe-haskell-mode -Wno-unsafe
+
+dependencies:
+  - base <5
+  - xstatic-th
+
+library:
+  source-dirs: src/
