@@ -43,9 +43,26 @@
       packages.x86_64-linux.demo = mk-exe hspkgs.demo-xstatic;
       packages.x86_64-linux.xterm = mk-exe hspkgs.demo-xterm;
       packages.x86_64-linux.novnc = mk-exe hspkgs.demo-novnc;
-      devShells.x86_64-linux.default = hspkgs.shellFor {
-        packages = p: [ p.demo-xstatic p.demo-websockets-ki-htmx p.demo-xterm ];
+      devShells.x86_64-linux.default = pkgs.mkShell {
         buildInputs = with pkgs; [
+          (hspkgs.ghcWithPackages (p: [
+            p.bytestring
+            p.warp
+            p.websockets
+            p.network-run
+            p.network
+            p.ki
+            p.servant-server
+            p.servant-websockets
+            p.lucid
+            p.lucid-htmx
+            p.string-interpolate
+            p.relude
+            p.lens
+            p.lens-aeson
+            p.stm
+            p.posix-pty
+          ]))
           hpack
           ghcid
           cabal-install
