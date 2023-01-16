@@ -4,7 +4,7 @@
 
   inputs = {
     nixpkgs.url =
-      "github:NixOS/nixpkgs/00d73d5385b63e868bd11282fb775f6fe4921fb5";
+      "github:NixOS/nixpkgs/3665c429d349fbda46b0651e554cca8434452748";
   };
   outputs = { self, nixpkgs }:
     let
@@ -23,16 +23,12 @@
           lucid-xstatic = mk "lucid-xstatic";
           servant-xstatic = mk "servant-xstatic";
 
-          # Bump dependencies to the latest version
-          ki = hpPrev.ki_1_0_0;
-          relude = pkgs.haskell.lib.dontCheck hpPrev.relude_1_1_0_0;
-
           demo-xstatic = mk "demo-xstatic";
           demo-websockets-ki-htmx = mk "demo-websockets-ki-htmx";
           demo-xterm = mk "demo-xterm";
           demo-novnc = mk "demo-novnc";
         };
-      hspkgs = pkgs.haskell.packages.ghc924.override ({
+      hspkgs = pkgs.haskell.packages.ghc925.override ({
         overrides = haskellOverrides;
       });
       mk-exe = pkgs.haskell.lib.justStaticExecutables;
@@ -53,6 +49,9 @@
             p.network
             p.ki
             p.servant-server
+            p.servant-lucid
+            p.tasty
+            p.tasty-hunit
             p.servant-websockets
             p.lucid
             p.lucid-htmx
@@ -65,9 +64,11 @@
           ]))
           hpack
           ghcid
-          cabal-install
+          hspkgs.cabal-install
           esbuild
-          haskell-language-server
+          (haskell-language-server.override {
+            supportedGhcVersions = [ "925" ];
+          })
         ];
       };
     };
