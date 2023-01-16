@@ -1,0 +1,25 @@
+name: xstatic-pcm-player
+version: 0.1.0.0
+synopsis: A minimalist javascript audio player for PCM streaming audio
+description: A minimalist javascript audio player for PCM streaming audio.
+homepage: https://github.com/samirkumardas/pcm-player
+author: Tristan Cacqueray
+maintainer: tdecacqu@redhat.com
+github: TristanCacqueray/haskell-xstatic
+category: JavaScript
+extra-source-files:
+  - CHANGELOG.md
+  - data/*.gz
+
+ghc-options:
+  - -Weverything
+  - -Wno-implicit-prelude
+  - -Wno-missing-import-lists
+  - -Wno-missing-safe-haskell-mode -Wno-unsafe
+
+dependencies:
+  - base <5
+  - xstatic-th
+
+library:
+  source-dirs: src/
