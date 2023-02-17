@@ -54,6 +54,7 @@
             p.tasty-hunit
             p.servant-websockets
             p.lucid
+            p.lucid2
             p.lucid-htmx
             p.string-interpolate
             p.relude
