@@ -4,6 +4,7 @@
 [![Hackage](https://img.shields.io/hackage/v/xstatic-th.svg?logo=haskell&label=xstatic-th)](https://hackage.haskell.org/package/xstatic-th)
 [![Hackage](https://img.shields.io/hackage/v/servant-xstatic.svg?logo=haskell&label=servant-xstatic)](https://hackage.haskell.org/package/servant-xstatic)
 [![Hackage](https://img.shields.io/hackage/v/lucid-xstatic.svg?logo=haskell&label=lucid-xstatic)](https://hackage.haskell.org/package/lucid-xstatic)
+[![Hackage](https://img.shields.io/hackage/v/lucid2-xstatic.svg?logo=haskell&label=lucid2-xstatic)](https://hackage.haskell.org/package/lucid2-xstatic)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](./xstatic/LICENSE)
 
 Similar to [xstatic-py](https://github.com/xstatic-py/xstatic),
@@ -14,7 +15,7 @@ as Haskell library to be installed using cabal.
 
 - Create a XStaticFile using `xstatic-th` or `file-embed`.
 - Serve the files using `xstatic` (for wai) or `servant-xstatic` (for servant).
-- Add the files to your html page using `lucid-xstatic`.
+- Add the files to your html page using `lucid-xstatic` or `lucid2-xstatic`.
 
 Checkout the [demo](./demo-xstatic), [demo-xterm](./demo-xterm) or [websockets-ki-htmx](./demo-websockets-ki-htmx) for examples.
 
