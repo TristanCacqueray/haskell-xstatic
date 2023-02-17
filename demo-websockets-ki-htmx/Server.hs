@@ -225,10 +225,10 @@ application scope state = pure indexHtml :<|> connectRoute :<|> reconnectRoute
             buf <- WS.receiveData @Text client.conn
             -- The "msg" key is defined by the chat form input name
             case buf ^? key "msg" . _String of
-                Just msg -> handleMessage username client msg
+                Just msg -> handleMessage username msg
                 Nothing -> putTextLn $ "unknown payload: " <> buf
 
-    handleMessage username client = \case
+    handleMessage username = \case
         "help" -> updateContent helpHtml
         "bang" -> updateContent bangHtml
         msg -> updateChat (messageHtml username msg)

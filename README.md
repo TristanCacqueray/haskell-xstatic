@@ -33,3 +33,14 @@ source-repository-package
 - The files are embedded in the code.
 - Compressed files are served as-is by automatically adding the `Content-Encoding: gzip` headers.
 - When adding new packages, keep the original files license. XStatic only adds metadata.
+
+## Contribute
+
+Contributions and bug reports are welcome!
+To work on this project you need a Haskell toolchain: [get-started](https://www.haskell.org/get-started/).
+
+Validate your change with:
+
+```ShellSession
+$ cabal build -O0 all --ghc-option=-Werror && cabal test -O0 all
+```

@@ -11,8 +11,7 @@ executable demo-websockets-ki-htmx
   hs-source-dirs: ./
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-missing-safe-haskell-mode -Wno-unsafe -Wno-missing-kind-signatures -Wno-monomorphism-restriction -Wno-missing-local-signatures
   build-depends:
-      base < 5
-    , lens
+      lens
     , lens-aeson
     , network
     , warp
