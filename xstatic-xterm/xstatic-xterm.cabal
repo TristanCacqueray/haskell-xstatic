@@ -19,6 +19,8 @@ license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     CHANGELOG.md
+    data/xterm-addon-fit.js.gz
+    data/xterm-addon-fit.js.map.gz
     data/xterm.css.gz
     data/xterm.js.gz
     data/xterm.js.map.gz
