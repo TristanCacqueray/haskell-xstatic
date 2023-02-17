@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           lucid-xstatic
-version:        0.1.0
+version:        0.1.1
 synopsis:       Lucid helper for XStatic
 description:    Use this library to add XStaticFile to your Html.
 category:       JavaScript
