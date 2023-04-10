@@ -18,6 +18,7 @@ executable demo-xstatic
     , warp
     , xstatic
     , xstatic-th
+    , xstatic-ace
     , xstatic-htmx
     , xstatic-remixicon
     , xstatic-sortable

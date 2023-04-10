@@ -11,13 +11,14 @@ import Network.Wai qualified as Wai
 import Network.Wai.Handler.Warp as Warp (run)
 import XStatic as XStatic
 import XStatic.TH (embedXStaticFile)
+import XStatic.Ace qualified as XStatic
 import XStatic.Htmx qualified as XStatic
 import XStatic.Remixicon qualified as XStatic
 import XStatic.Sortable qualified as XStatic
 import XStatic.Tailwind qualified as XStatic
 
 staticApp :: Wai.Application
-staticApp = XStatic.xstaticApp $ body : XStatic.htmx : XStatic.tailwind : XStatic.sortable : XStatic.remixicon
+staticApp = XStatic.xstaticApp $ body : XStatic.aceJs : XStatic.htmx : XStatic.tailwind : XStatic.sortable : XStatic.remixicon <> XStatic.aceBundle
 
 body :: XStaticFile
 body = $(embedXStaticFile "index.html")

@@ -13,6 +13,7 @@
         let mk = name: hpPrev.callCabal2nix name "${self}/${name}" { };
         in {
           xstatic = mk "xstatic";
+          xstatic-ace = mk "xstatic-ace";
           xstatic-htmx = mk "xstatic-htmx";
           xstatic-remixicon = mk "xstatic-remixicon";
           xstatic-sortable = mk "xstatic-sortable";
