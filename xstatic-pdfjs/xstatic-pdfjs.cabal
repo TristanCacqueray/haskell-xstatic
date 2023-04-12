@@ -1,0 +1,39 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.1.
+--
+-- see: https://github.com/sol/hpack
+
+name:           xstatic-pdfjs
+version:        3.4.120
+synopsis:       PDF Reader in JavaScript.
+description:    PDF.js is a Portable Document Format (PDF) viewer that is built with HTML5.
+category:       JavaScript
+homepage:       https://github.com/mozilla/pdf.js/
+bug-reports:    https://github.com/TristanCacqueray/haskell-xstatic/issues
+author:         Tristan Cacqueray
+maintainer:     tdecacqu@redhat.com
+license:        Apache-2.0
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    CHANGELOG.md
+    data/pdf.min.js.gz
+    data/pdf.worker.min.js.gz
+
+source-repository head
+  type: git
+  location: https://github.com/TristanCacqueray/haskell-xstatic
+
+library
+  exposed-modules:
+      XStatic.PdfJS
+  other-modules:
+      Paths_xstatic_pdfjs
+  hs-source-dirs:
+      src/
+  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-missing-safe-haskell-mode -Wno-unsafe
+  build-depends:
+      base <5
+    , xstatic-th
+  default-language: Haskell2010
