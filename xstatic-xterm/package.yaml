@@ -1,9 +1,8 @@
 name: xstatic-xterm
-version: 4.19.0.0
+version: 5.1.0
 synopsis: A terminal for the web
 description: A terminal for the web.
-
-   Checkout https://xtermjs.org
+homepage: https://xtermjs.org
 author: Tristan Cacqueray
 maintainer: tdecacqu@redhat.com
 github: TristanCacqueray/haskell-xstatic

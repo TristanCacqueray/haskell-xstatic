@@ -1,16 +1,15 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.35.0.
+-- This file has been generated from package.yaml by hpack version 0.35.1.
 --
 -- see: https://github.com/sol/hpack
 
 name:           xstatic-xterm
-version:        4.19.0.0
+version:        5.1.0
 synopsis:       A terminal for the web
 description:    A terminal for the web.
-                Checkout https://xtermjs.org
 category:       JavaScript
-homepage:       https://github.com/TristanCacqueray/haskell-xstatic#readme
+homepage:       https://xtermjs.org
 bug-reports:    https://github.com/TristanCacqueray/haskell-xstatic/issues
 author:         Tristan Cacqueray
 maintainer:     tdecacqu@redhat.com
