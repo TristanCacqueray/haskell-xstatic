@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "xterm": "^5.1.0",
-    "xterm-addon-fit": "^0.7.0"
+    "xterm-addon-fit": "^0.7.0",
+    "xterm-addon-webgl": "^0.14.0"
   }
 }
