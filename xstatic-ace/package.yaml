@@ -1,7 +1,14 @@
 name: xstatic-ace
-version: 1.16.0
+version: 1.23.4
 synopsis:  Ace (Ajax.org Cloud9 Editor)
-description: Ace is a standalone code editor written in JavaScript.
+description: |
+  Ace is a standalone code editor written in JavaScript.
+
+  To update, run:
+
+    rsync -a ~/src/github.com/ajaxorg/ace-builds/src-noconflict/ data/
+    find data/ -name "*.js" -exec gzip -f -9 {} \;
+
 homepage: https://ace.c9.io
 author: Tristan Cacqueray
 maintainer: tdecacqu@redhat.com
