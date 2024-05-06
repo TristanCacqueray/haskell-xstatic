@@ -4,7 +4,7 @@
 
   inputs = {
     nixpkgs.url =
-      "github:NixOS/nixpkgs/3665c429d349fbda46b0651e554cca8434452748";
+      "github:NixOS/nixpkgs/b79cc961fe98b158ea051ae3c71616872ffe8212";
   };
   outputs = { self, nixpkgs }:
     let
@@ -29,7 +29,7 @@
           demo-xterm = mk "demo-xterm";
           demo-novnc = mk "demo-novnc";
         };
-      hspkgs = pkgs.haskell.packages.ghc925.override ({
+      hspkgs = pkgs.haskell.packages.ghc964.override ({
         overrides = haskellOverrides;
       });
       mk-exe = pkgs.haskell.lib.justStaticExecutables;
@@ -69,7 +69,7 @@
           hspkgs.cabal-install
           esbuild
           (haskell-language-server.override {
-            supportedGhcVersions = [ "925" ];
+            supportedGhcVersions = [ "964" ];
           })
         ];
       };
