@@ -1,11 +1,11 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.35.1.
+-- This file has been generated from package.yaml by hpack version 0.36.0.
 --
 -- see: https://github.com/sol/hpack
 
 name:           xstatic-xterm
-version:        5.1.0
+version:        5.3.0
 synopsis:       A terminal for the web
 description:    A terminal for the web.
 category:       JavaScript
@@ -20,6 +20,8 @@ extra-source-files:
     CHANGELOG.md
     data/xterm-addon-fit.js.gz
     data/xterm-addon-fit.js.map.gz
+    data/xterm-addon-webgl.js.gz
+    data/xterm-addon-webgl.js.map.gz
     data/xterm.css.gz
     data/xterm.js.gz
     data/xterm.js.map.gz

@@ -1,7 +1,10 @@
 {
   "dependencies": {
-    "xterm": "^5.1.0",
-    "xterm-addon-fit": "^0.7.0",
-    "xterm-addon-webgl": "^0.14.0"
+    "xterm": "*",
+    "xterm-addon-fit": "*",
+    "xterm-addon-webgl": "*"
+  },
+  "scripts": {
+    "bundle": "for path in node_modules/xterm/css/xterm.css node_modules/xterm*/lib/*; do cat $path | gzip -9 > data/$(basename $path).gz; done"
   }
 }

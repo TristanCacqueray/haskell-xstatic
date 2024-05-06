@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.3.0
+
+- Package latest version
+
 ## 5.1.0
 
 - Package latest version
