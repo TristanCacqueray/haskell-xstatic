@@ -21,13 +21,22 @@
           xstatic-xterm = mk "xstatic-xterm";
           xstatic-novnc = mk "xstatic-novnc";
           xstatic-th = mk "xstatic-th";
+          xstatic-quill = mk "xstatic-quill";
           lucid-xstatic = mk "lucid-xstatic";
           servant-xstatic = mk "servant-xstatic";
+
+          ot = hpPrev.callCabal2nix "ebml" (pkgs.fetchFromGitHub {
+            owner = "TristanCacqueray";
+            repo = "ot.hs";
+            rev = "daa7dc081389dab4f567b5b75121743c0a67c93a";
+            sha256 = "sha256-wBsMnXPjKAiKBgXI84NEb6fgvTBGey7+Wp+C3IpvY/c=";
+          }) { };
 
           demo-xstatic = mk "demo-xstatic";
           demo-websockets-ki-htmx = mk "demo-websockets-ki-htmx";
           demo-xterm = mk "demo-xterm";
           demo-novnc = mk "demo-novnc";
+          demo-quill-ot = mk "demo-quill-ot";
         };
       hspkgs = pkgs.haskell.packages.ghc964.override ({
         overrides = haskellOverrides;
@@ -63,6 +72,7 @@
             p.lens-aeson
             p.stm
             p.posix-pty
+            p.ot
           ]))
           hpack
           ghcid

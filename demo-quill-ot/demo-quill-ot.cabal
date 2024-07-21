@@ -1,0 +1,35 @@
+cabal-version: 3.0
+version:       0
+name:          demo-quill-ot
+author:        Tristan Cacqueray
+maintainer:    tdecacqu@redhat.com
+license:       BSD-3-Clause
+license-file:  LICENSE
+
+executable demo-quill-ot
+  main-is: Server.hs
+  hs-source-dirs: ./
+  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-missing-safe-haskell-mode -Wno-unsafe -Wno-missing-kind-signatures -Wno-monomorphism-restriction -Wno-missing-local-signatures
+  build-depends:
+      base
+    , aeson
+    , async
+    , network
+    , warp
+    , xstatic
+    , xstatic-quill
+    , websockets
+    , say
+    , servant-lucid
+    , servant-server
+    , servant-websockets
+    , string-qq
+    , stm
+    , text
+    , ot
+    , warp
+    , wai
+    , lucid
+    , lucid-xstatic
+    , bytestring
+  default-language: GHC2021

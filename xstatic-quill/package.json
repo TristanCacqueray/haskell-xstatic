@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "quill": "*"
+  },
+  "scripts": {
+    "bundle": "for path in node_modules/quill/dist/{quill.js,quill.js.map,quill.snow.css}; do cat $path | gzip -9 > data/$(basename $path).gz; done"
+  }
+}
