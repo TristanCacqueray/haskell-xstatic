@@ -1,0 +1,27 @@
+name: xstatic-quill-cursors
+version: 4.0.3
+synopsis:  A multi cursor module for Quill text editor
+description:  A multi cursor module for Quill text editor.
+homepage: https://github.com/reedsy/quill-cursors
+author: Tristan Cacqueray
+maintainer: tdecacqu@redhat.com
+github: TristanCacqueray/haskell-xstatic
+category: JavaScript
+license: MIT
+extra-source-files:
+  - CHANGELOG.md
+  - data/*.gz
+
+ghc-options:
+  - -Weverything
+  - -Wno-implicit-prelude
+  - -Wno-missing-import-lists
+  # how to make template haskell file-embed be safe?
+  - -Wno-missing-safe-haskell-mode -Wno-unsafe
+
+dependencies:
+  - base <5
+  - xstatic-th
+
+library:
+  source-dirs: src/

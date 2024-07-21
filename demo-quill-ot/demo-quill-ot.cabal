@@ -14,10 +14,12 @@ executable demo-quill-ot
       base
     , aeson
     , async
+    , containers
     , network
     , warp
     , xstatic
     , xstatic-quill
+    , xstatic-quill-cursors
     , websockets
     , say
     , servant-lucid

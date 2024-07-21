@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "quill-cursors": "*"
+  },
+  "scripts": {
+    "bundle": "for path in node_modules/quill-cursors/dist/quill-cursors.js; do cat $path | gzip -9 > data/$(basename $path).gz; done"
+  }
+}
