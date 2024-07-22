@@ -18,6 +18,7 @@ executable demo-quill-ot
     , network
     , warp
     , xstatic
+    , xstatic-otjs
     , xstatic-quill
     , xstatic-quill-cursors
     , websockets
