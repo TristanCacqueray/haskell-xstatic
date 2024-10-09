@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@codemirror/lang-markdown": "^6.3.0",
+    "codemirror": "*"
+  },
+  "scripts": {
+    "bundle": "esbuild ./index.js --bundle --sourcemap --outfile=./data/codemirror.js --minify && gzip -9 ./data/codemirror.js ./data/codemirror.js.map"
+  }
+}
