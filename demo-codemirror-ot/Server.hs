@@ -257,6 +257,34 @@ function encodeDelta(d) {
   }
 }
 
+// Function to fold all levels of code
+function foldAllRecursive(view) {
+  const state = view.state;
+
+  // Traverse the syntax tree and fold all sub headings
+  const foldRanges = [];
+  const addFoldRange = (from, to) => {
+    if (from !== null && from !== to) foldRanges.push({from, to})
+  }
+  let pos = 0;
+  let begin = null;
+  let epicBegin = null;
+  state.doc.text.forEach(l => {
+    if (l.startsWith("## ")) {
+      addFoldRange(begin, pos - 1)
+      begin = pos + l.length
+    } else if (l.startsWith("# ")) {
+      addFoldRange(begin, pos - 1)
+      begin = null
+    }
+    pos += l.length + 1
+  })
+  addFoldRange(begin, pos - 1)
+  return {
+    effects: foldRanges.map(range => CodeMirror.foldEffect.of({ from: range.from, to: range.to }))
+  };
+}
+
 // Convert delta from ot.hs to Quill
 function decodeDelta(d) {
   if (typeof d === 'string' || d instanceof String) {
@@ -371,10 +399,11 @@ function setupClient() {
 
         // Start with a new doc
         if (msg.body == "") {
-          tr.changes.insert = "# Hello World!";
+          tr.changes.insert = "# Epic\n\n## Story\nDoD\n## Story2\n\n# Epic2\n\n## story3\n- [ ] task\n\n## story4\nthe is the end";
           tr.annotations = []
         }
         editor.dispatch(tr)
+        editor.dispatch(foldAllRecursive(editor.viewState))
       } else {
         // Rev without body is an acknowledge request
         client.serverAck()

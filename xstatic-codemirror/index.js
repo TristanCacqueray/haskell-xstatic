@@ -3,13 +3,23 @@
 import { EditorView, basicSetup } from "codemirror";
 import { ViewPlugin } from "@codemirror/view";
 import { EditorState, ChangeSet } from "@codemirror/state";
+import {
+  ParseContext,
+  syntaxTree,
+  foldable,
+  foldEffect,
+} from "@codemirror/language";
 import { markdown } from "@codemirror/lang-markdown";
 
 globalThis.CodeMirror = {
   EditorView,
   ViewPlugin,
   EditorState,
+  ParseContext,
   ChangeSet,
   basicSetup,
+  syntaxTree,
+  foldable,
+  foldEffect,
   markdown,
 };

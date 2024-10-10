@@ -4,6 +4,6 @@
     "codemirror": "*"
   },
   "scripts": {
-    "bundle": "esbuild ./index.js --bundle --sourcemap --outfile=./data/codemirror.js --minify && gzip -9 ./data/codemirror.js ./data/codemirror.js.map"
+    "bundle": "esbuild ./index.js --bundle --sourcemap --outfile=./data/codemirror.js --minify && rm -f ./data/*.gz && gzip -9 ./data/codemirror.js ./data/codemirror.js.map"
   }
 }
