@@ -8,6 +8,7 @@ import {
   syntaxTree,
   foldable,
   foldEffect,
+  unfoldAll,
 } from "@codemirror/language";
 import { markdown } from "@codemirror/lang-markdown";
 
@@ -21,5 +22,6 @@ globalThis.CodeMirror = {
   syntaxTree,
   foldable,
   foldEffect,
+  unfoldAll,
   markdown,
 };
