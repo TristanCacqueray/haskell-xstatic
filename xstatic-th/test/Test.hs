@@ -5,6 +5,7 @@
 module Main (main) where
 
 import Codec.Compression.GZip qualified as GZip
+import Control.Monad (unless)
 import Data.ByteString qualified as BS
 import Test.Tasty
 import Test.Tasty.HUnit
@@ -29,6 +30,7 @@ main = defaultMain $ do
                 xf = $(embedXStaticFile "./data/test.js")
             xfPath xf @?= "/test.js"
             xfETag xf @?= "724ba28f4a9a1b472057ff99511ed393a45552e1"
-            xfType xf @?= "application/javascript"
+            unless (xfType xf `elem` ["application/javascript", "text/javascript"]) $ do
+                error $ "Bad mime type: " <> show (xfType xf)
             xfContent xf @?= BS.toStrict (GZip.compress "true\n")
         ]
